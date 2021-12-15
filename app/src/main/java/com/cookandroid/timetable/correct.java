@@ -72,7 +72,7 @@ public class correct extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                if(day!=100||time!=100) {
+                //if(day!=100||time!=100) {
                     lectureName = editText.getText().toString();
                     Log.e("intent 보내기",day+" "+time+" "+lectureName);
                     intent.putExtra("day", day);
@@ -80,11 +80,11 @@ public class correct extends AppCompatActivity {
                     intent.putExtra("lectureName", lectureName);
 
                     startActivity(intent);
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"강의 정보를 넣어주세요",Toast.LENGTH_SHORT);
-                }
+                //}
+                //else
+                //{
+                //    Toast.makeText(getApplicationContext(),"강의 정보를 넣어주세요",Toast.LENGTH_SHORT);
+                //}
             }
         });
 
