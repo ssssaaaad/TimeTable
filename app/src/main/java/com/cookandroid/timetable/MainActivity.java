@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     int time;
     String lectureName;
     static boolean corrected = false;
+    boolean corrected1 = false;
     static SQLiteDatabase database;
 
     @Override
@@ -89,81 +90,74 @@ public class MainActivity extends AppCompatActivity {
 
         if(corrected)
         {
-
-            Log.e("intent 받기",day+" "+time+" "+lectureName);
             Intent intent = getIntent();
-            corrected = false;
-            day = intent.getExtras().getInt("day");
-            time = intent.getExtras().getInt("time");
-            lectureName = intent.getExtras().getString("lectureName");
-            Log.e("lectureName",lectureName);
             ContentValues addRowValue = new ContentValues();
+            corrected1 = intent.getExtras().getBoolean("corrected1");
+            addRowValue.put("corrected1",corrected1);
+            if(corrected1) {
+                Log.e("intent 받기", day + " " + time + " " + lectureName);
 
-            addRowValue.put("day",day);
-            addRowValue.put("time",time);
-            addRowValue.put("lectureName",lectureName);
+                corrected = false;
+                day = intent.getExtras().getInt("day");
+                time = intent.getExtras().getInt("time");
+                lectureName = intent.getExtras().getString("lectureName");
+                Log.e("lectureName", lectureName);
 
-            //dataBaseManager.insert(addRowValue);
-            switch (day)
-            {
-                case 0:
-                    if(lectureName.length() == 0)
-                    {
-                        Log.e("mondayList","null");
-                        mondayList[time].setText("");
-                        mondayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
-                    }
-                    else
-                    {
-                        Log.e("mondayList","Full");
-                        mondayList[time].setText(lectureName);
-                        mondayList[time].setBackgroundColor(Color.parseColor("#99FF99"));
-                    }
-                    break;
-                case 1:
-                    if(lectureName.length() == 0)
-                    {
-                        tuesdayList[time].setText("");
-                        tuesdayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
-                    }
-                    else {
-                        tuesdayList[time].setText(lectureName);
-                        tuesdayList[time].setBackgroundColor(Color.parseColor("#99CCFF"));
-                    }
-                    break;
-                case 2:
-                    if(lectureName.length() == 0)
-                    {
-                        wednesdayList[time].setText("");
-                        wednesdayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
-                    }
-                    else {
-                        wednesdayList[time].setText(lectureName);
-                        wednesdayList[time].setBackgroundColor(Color.parseColor("#9999FF"));
-                    }
-                    break;
-                case 3:
-                    if(lectureName.length() == 0)
-                    {
-                        thursdayList[time].setText("");
-                        thursdayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
-                    }
-                    else {
-                        thursdayList[time].setText(lectureName);
-                        thursdayList[time].setBackgroundColor(Color.parseColor("#CCFFFF"));
-                    }
-                    break;
-                case 4:
-                    if(lectureName.length() == 0)
-                    {
-                        fridayList[time].setText("");
-                        fridayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
-                    }
-                    else {
-                        fridayList[time].setText(lectureName);
-                        fridayList[time].setBackgroundColor(Color.parseColor("#CCCCFF"));
-                    }
-                    break;
+
+                addRowValue.put("day", day);
+                addRowValue.put("time", time);
+                addRowValue.put("lectureName", lectureName);
+
+                //dataBaseManager.insert(addRowValue);
+                switch (day) {
+                    case 0:
+                        if (lectureName.length() == 0) {
+                            Log.e("mondayList", "null");
+                            mondayList[time].setText("");
+                            mondayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
+                        } else {
+                            Log.e("mondayList", "Full");
+                            mondayList[time].setText(lectureName);
+                            mondayList[time].setBackgroundColor(Color.parseColor("#99FF99"));
+                        }
+                        break;
+                    case 1:
+                        if (lectureName.length() == 0) {
+                            tuesdayList[time].setText("");
+                            tuesdayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
+                        } else {
+                            tuesdayList[time].setText(lectureName);
+                            tuesdayList[time].setBackgroundColor(Color.parseColor("#99CCFF"));
+                        }
+                        break;
+                    case 2:
+                        if (lectureName.length() == 0) {
+                            wednesdayList[time].setText("");
+                            wednesdayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
+                        } else {
+                            wednesdayList[time].setText(lectureName);
+                            wednesdayList[time].setBackgroundColor(Color.parseColor("#9999FF"));
+                        }
+                        break;
+                    case 3:
+                        if (lectureName.length() == 0) {
+                            thursdayList[time].setText("");
+                            thursdayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
+                        } else {
+                            thursdayList[time].setText(lectureName);
+                            thursdayList[time].setBackgroundColor(Color.parseColor("#CCFFFF"));
+                        }
+                        break;
+                    case 4:
+                        if (lectureName.length() == 0) {
+                            fridayList[time].setText("");
+                            fridayList[time].setBackgroundColor(Color.parseColor("#CCCCCC"));
+                        } else {
+                            fridayList[time].setText(lectureName);
+                            fridayList[time].setBackgroundColor(Color.parseColor("#CCCCFF"));
+                        }
+                        break;
+                }
             }
         }
 

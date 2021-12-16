@@ -16,9 +16,10 @@ import android.widget.Toast;
 
 public class correct extends AppCompatActivity {
 
-    int day;
-    int time;
+    int day = 100;
+    int time = 100;
     String lectureName;
+    boolean corrected1 = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,19 +73,21 @@ public class correct extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                //if(day!=100||time!=100) {
+                if(day!=100||time!=100) {
                     lectureName = editText.getText().toString();
                     Log.e("intent 보내기",day+" "+time+" "+lectureName);
                     intent.putExtra("day", day);
                     intent.putExtra("time", time);
                     intent.putExtra("lectureName", lectureName);
+                    corrected1 = true;
+                    intent.putExtra("corrected1",corrected1);
 
                     startActivity(intent);
-                //}
-                //else
-                //{
-                //    Toast.makeText(getApplicationContext(),"강의 정보를 넣어주세요",Toast.LENGTH_SHORT);
-                //}
+                }
+                else
+                {
+                   Toast.makeText(getApplicationContext(),"강의 정보를 넣어주세요",Toast.LENGTH_SHORT);
+                }
             }
         });
 
@@ -93,6 +96,8 @@ public class correct extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                corrected1 = false;
+                intent.putExtra("corrected1",corrected1);
                 startActivity(intent);
             }
         });
